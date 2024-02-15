@@ -1,5 +1,7 @@
 folio-snapshot/.idea/**
 folio-snapshot/.vagrant/**
+folio-snapshot/.idea
+folio-snapshot/.vagrant
 
 folio-snapshot/**/**.jar
 
