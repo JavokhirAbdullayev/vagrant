@@ -13,7 +13,7 @@ Vagrant.configure("2") do |config|
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://vagrantcloud.com/search.
   config.vm.box = "folio/snapshot"
-  config.vm.box_version = "1.0.0-20240212.8338"
+  config.vm.box_version = "1.0.0-20240418.8408"
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
   # `vagrant box outdated`. This is not recommended.
@@ -32,6 +32,8 @@ Vagrant.configure("2") do |config|
   config.vm.network :forwarded_port, host: 15432, guest: 5432
   config.vm.network :forwarded_port, host: 5005, guest: 5005
   config.vm.network :forwarded_port, host: 5055, guest: 5055
+  config.vm.network :forwarded_port, host: 5056, guest: 5056
+  config.vm.network :forwarded_port, host: 5057, guest: 5057
   config.vm.network :forwarded_port, host: 3000, guest: 3000
   config.vm.network :forwarded_port, host: 9997, guest: 9997
   config.vm.network :forwarded_port, host: 9996, guest: 9996
@@ -72,7 +74,7 @@ Vagrant.configure("2") do |config|
   #   vb.gui = true
   #
   #   # Customize the amount of memory on the VM:
-    vb.memory = "25360"
+    vb.memory = "24500"
     vb.cpus=4
   end
   #
@@ -82,8 +84,12 @@ Vagrant.configure("2") do |config|
   # Enable provisioning with a shell script. Additional provisioners such as
   # Ansible, Chef, Docker, Puppet and Salt are also available. Please see the
   # documentation for more information about their specific syntax and use.
-  # config.vm.provision "shell", inline: <<-SHELL
-  #   apt-get update
-  #   apt-get install -y apache2
-  # SHELL
+  config.vm.provision "shell", inline: <<-SHELL
+#       sudo apt install swapspace -y
+#       sudo lvresize -rl +100%FREE /dev/mapper/ubuntu--vg-ubuntu--lv
+        # Assuming you have a custom_okapi.json in the same directory as your Vagrantfile
+      docker stop okapi
+      docker rm okapi
+      docker run --detach --name okapi -v /etc/folio/okapi:/usr/verticles/okapi:ro --network host --restart always --env JAVA_OPTIONS='-Djava.awt.headless=true -Ddeploy.waitIterations=110' folioci/okapi:latest dev -conf okapi/okapi.json
+    SHELL
 end

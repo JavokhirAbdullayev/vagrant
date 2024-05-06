@@ -17,9 +17,7 @@ docker run -d -t -i \
   -e MAX_REQUEST_SIZE='4000000' \
   -e DB_RECONNECTATTEMPTS='3' \
   -e DB_RECONNECTINTERVAL='1000' \
-  -p 9194:8081 \
+  -p 9195:8081 \
   -p 5055:5005 \
-  -e DI_ORDER_CREATED_PARTITIONS='5' \
-  -e DI_PENDING_ORDER_CREATED_PARTITIONS='6' \
   mod-orders
 

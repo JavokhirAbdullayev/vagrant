@@ -1,0 +1,18 @@
+{
+  "dockerRegistries": [{"username":"foliocipull","password":"+Lc#tP4U9S","serveraddress":"docker.ci.folio.org","registry":"docker.ci.folio.org"}],
+  "port": "9130",
+  "port_start": "9131",
+  "port_end": "9661",
+  "host": "10.0.2.15",
+  "storage": "postgres",
+  "okapiurl": "http://10.0.2.15:9130",
+  "dockerUrl": "http://localhost:4243",
+  "postgres_host": "10.0.2.15",
+  "postgres_port": "5432",
+  "postgres_username": "okapi",
+  "postgres_password": "okapi25",
+  "postgres_database": "okapi",
+  "token_cache_max_size": "10000",
+  "token_cache_ttl_ms": "18000000",
+  "deploy_waitIterations": "100"
+}

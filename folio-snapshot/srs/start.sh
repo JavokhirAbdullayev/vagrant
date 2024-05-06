@@ -11,7 +11,7 @@ docker run -d -t -i \
   -e JAVA_DEBUG='true' \
   -e KAFKA_HOST='10.0.2.15' \
   -e KAFKA_PORT='9092' \
-  -p 9147:8081 \
+  -p 9148:8081 \
   -p 5005:5005 \
   -e MAX_REQUEST_SIZE='4000000' \
   -e ENV=FOLIO \

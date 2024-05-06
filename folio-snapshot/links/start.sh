@@ -1,4 +1,4 @@
-docker build -t mod-invoice .
+docker build -t mod-entities-links .
 
 docker run -d -t -i \
   -e JAVA_OPTIONS='-XX:MaxRAMPercentage=66.0 -Xmx256m -Djava.util.logging.config.file=vertx-default-jul-logging.properties' \
@@ -17,7 +17,9 @@ docker run -d -t -i \
   -e MAX_REQUEST_SIZE='4000000' \
   -e DB_RECONNECTATTEMPTS='3' \
   -e DB_RECONNECTINTERVAL='1000' \
-  -p 9201:8081 \
+  -e S3_URL='http://localhost:9500' \
+  -e S3_REGION='us-east-1'\
+  -p 9174:8081 \
   -p 5055:5005 \
-  mod-invoice
+  mod-entities-links
 
