@@ -14,5 +14,5 @@
   "postgres_database": "okapi",
   "token_cache_max_size": "10000",
   "token_cache_ttl_ms": "18000000",
-  "deploy_waitIterations": "100"
+  "deploy_waitIterations": "110"
 }
